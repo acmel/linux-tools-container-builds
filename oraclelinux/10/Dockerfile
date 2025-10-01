@@ -11,7 +11,7 @@ RUN dnf -y install make gcc gcc-c++ flex bison \
 		   perl-ExtUtils-Embed python3-devel python3-setuptools binutils-devel \
 		   systemtap-sdt-devel xz-devel numactl-devel libcap-devel \
 		   cmake xmlto asciidoc libtraceevent-devel libbpf-devel \
-		   capstone-devel
+		   capstone-devel java-21-openjdk-devel
 RUN dnf -y clean all && \
     mkdir -m 777 -p /git /tmp/build/perf /tmp/build/objtool /tmp/build/linux && \
     groupadd -r toolsbuilder && \
