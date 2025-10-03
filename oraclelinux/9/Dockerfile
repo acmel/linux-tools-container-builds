@@ -16,7 +16,7 @@ RUN dnf -y clean all && \
     mkdir -m 777 -p /git /tmp/build/perf /tmp/build/objtool /tmp/build/linux && \
     groupadd -r toolsbuilder && \
     useradd -m -r -g toolsbuilder toolsbuilder && \
-    chown -R toolsbuilder.toolsbuilder /tmp/build/ /git/
+    chown -R toolsbuilder:toolsbuilder /tmp/build/ /git/
 USER toolsbuilder
 COPY rx_and_build.sh /
 COPY .bash_profile /home/toolsbuilder/

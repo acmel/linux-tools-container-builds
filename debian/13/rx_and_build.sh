@@ -71,10 +71,6 @@ set +o xtrace
 # Bail ou if we don't have clang, print the version for dm to harvest and put in the status line
 ${CROSS_COMPILE}clang -v || exit 0
 
-# Avoid things like archlinux clashing with _FORTIFY_SOURCE=2
-unset CPPFLAGS
-unset CFLAGS
-
 if [ -z "$BUILD_CMD" ] ; then
 	build_perf_clang
 else
