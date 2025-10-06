@@ -7,6 +7,11 @@ MAINTAINER Arnaldo Carvalho de Melo <acme@kernel.org>
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -y update && \
     apt-get -y install apt-utils make flex bison curl bc findutils build-essential cmake xmlto asciidoc vim strace exuberant-ctags && \
+    apt-get -y install clang llvm libclang-dev llvm-dev libcap-dev \
+	libunwind8-dev libssl-dev libslang2-dev python3-dev python3-setuptools \
+	systemtap-sdt-dev libgtk2.0-dev liblzma-dev binutils-dev \
+	libelf-dev libiberty-dev libdw-dev libaudit-dev libtraceevent-dev libbpf-dev \
+	libperl-dev libnuma-dev libzstd-dev cmake xmlto asciidoc && \
     apt-get -y clean && \
     rm -rf /usr/share/doc /usr/share/gtk-doc /usr/share/locale /usr/share/man
 ENV ARCH mips

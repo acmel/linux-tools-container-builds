@@ -12,6 +12,11 @@ ENV TARGET riscv64-linux-gnu
 RUN apt-get -y update && \
     apt-get -y install make gcc-${TARGET} flex bison python3 && \
     apt-get -y install wget bzip2 curl xz-utils cmake xmlto asciidoc && \
+    apt-get -y install clang llvm libclang-dev llvm-dev libcap-dev \
+	libunwind8-dev libssl-dev libslang2-dev python3-dev python3-setuptools \
+	systemtap-sdt-dev libgtk2.0-dev liblzma-dev binutils-dev \
+	libelf-dev libiberty-dev libdw-dev libaudit-dev libtraceevent-dev libbpf-dev \
+	libperl-dev libnuma-dev libzstd-dev cmake xmlto asciidoc && \
     export ELFUTILS_VER=0.187 && \
     export ZLIB_VER=1.3.1 && \
     export INSTALLDIR=/usr/${TARGET} && \
@@ -47,6 +52,7 @@ RUN apt-get -y update && \
     chown -R toolsbuilder.toolsbuilder /tmp/build/ /git/
 USER toolsbuilder
 COPY rx_and_build.sh /
+ENV ARCH riscv
 ENV CROSS_COMPILE=${TARGET}-
 ENV EXTRA_MAKE_ARGS=NO_LIBTRACEEVENT=1
 COPY .bash_profile /home/toolsbuilder/

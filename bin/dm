@@ -75,7 +75,7 @@ for img in ${images} ; do
 	NO_CLANG=$(echo $envdm | grep -q NO_CLANG && echo "1")
 	clang_version=""
 	if [ -z "$NO_CLANG" ] ; then
-		clang_version=$(${PODMAN_RUN} --entrypoint=${CROSS_COMPILE}clang $img --version 2>/dev/null | head -1 | tr -d '\r\n')
+		clang_version=$(${PODMAN_RUN} --entrypoint=clang $img --version 2>/dev/null | head -1 | tr -d '\r\n')
 		[ -z "$clang_version" ] || clang_version=$(echo -n ", $clang_version")
 	fi
 	timeline=$(grep "seconds time elapsed" ${output_stat}) ; seconds=$(echo ${timeline} | sed -r 's/([0-9]+\.[0-9]+).* second.*/\1/g') ; rm -f ${output_stat}

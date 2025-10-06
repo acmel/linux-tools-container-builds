@@ -41,7 +41,7 @@ RUN export ELFUTILS_VER=0.180 && \
     rm -rf elfutils-${ELFUTILS_VER} && \
     apt-get -y remove wget bzip2 && \
     apt-get clean && \
-    unset TARGET INSTALLDIR TARGETMACH CROSS CC LD AS && \
+    unset INSTALLDIR TARGETMACH CROSS CC LD AS && \
     mkdir -m 777 -p /git /tmp/build/perf /tmp/build/objtool /tmp/build/linux && \
     groupadd -r toolsbuilder && \
     useradd -m -r -g toolsbuilder toolsbuilder && \

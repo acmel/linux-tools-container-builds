@@ -69,7 +69,7 @@ set -o xtrace
 set +o xtrace
 
 # Bail ou if we don't have clang, print the version for dm to harvest and put in the status line
-${CROSS_COMPILE}clang -v || exit 0
+clang -v || exit 0
 
 if [ -z "$BUILD_CMD" ] ; then
 	build_perf_clang
