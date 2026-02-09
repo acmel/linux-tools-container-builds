@@ -3,7 +3,7 @@ FROM fedora:rawhide
 MAINTAINER Arnaldo Carvalho de Melo <acme@kernel.org>
 RUN dnf -y --nogpgcheck update
 RUN dnf -y install make gcc gcc-c++ flex bison xz \
-	bc file findutils clang llvm git which gawk \
+	bc file findutils clang llvm git which gawk rust \
 	libunwind-devel openssl-devel slang-devel python-devel libzstd-devel \
 	systemtap-sdt-devel gtk2-devel xz-devel binutils-devel \
 	elfutils-libelf-devel elfutils-devel audit-libs-devel \
