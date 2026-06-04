@@ -2,6 +2,7 @@
 FROM docker.io/library/ubuntu:20.04
 MAINTAINER Arnaldo Carvalho de Melo <acme@kernel.org>
 ENV DEBIAN_FRONTEND noninteractive
+# Don't include capstone, it uses enum for the arches and new code uses things we don't have in this distro
 RUN apt-get -y update && \
     apt-get -y install \
 	make gcc g++ flex bison curl file man \
@@ -11,7 +12,7 @@ RUN apt-get -y update && \
 	systemtap-sdt-dev libgtk2.0-dev liblzma-dev binutils-dev \
 	libelf-dev libiberty-dev libdw-dev libaudit-dev \
 	libperl-dev libnuma-dev libzstd-dev \
-	cmake xmlto asciidoc libcapstone-dev && \
+	cmake xmlto asciidoc && \
     apt-get -y clean && \
     mkdir -m 777 -p /git /tmp/build/perf /tmp/build/objtool /tmp/build/linux && \
     groupadd -r toolsbuilder && \
