@@ -2,6 +2,7 @@
 FROM debian:12
 MAINTAINER Arnaldo Carvalho de Melo <acme@kernel.org>
 ENV DEBIAN_FRONTEND noninteractive
+# Don't include capstone, it uses enum for the arches and new code uses things we don't have in this distro
 RUN apt-get -y update && \
     apt-get -y install apt-utils make flex bison curl bc findutils \
 	gcc g++ clang llvm git \
@@ -11,7 +12,6 @@ RUN apt-get -y update && \
 	libtraceevent-dev \
 	llvm-dev \
 	libcap-dev \
-	libcapstone-dev \
 	libdw-dev \
 	libelf-dev \
 	libgtk2.0-dev \
