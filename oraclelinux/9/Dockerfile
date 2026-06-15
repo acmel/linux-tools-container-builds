@@ -10,8 +10,8 @@ RUN dnf -y install make gcc gcc-c++ flex bison \
 		   audit-libs-devel openssl-devel slang-devel libzstd-devel  \
 		   gtk2-devel perl-ExtUtils-Embed python3-devel python3-setuptools binutils-devel \
 		   systemtap-sdt-devel xz-devel numactl-devel libcap-devel \
-		   java-1.8.0-openjdk-devel cmake xmlto asciidoc libtraceevent-devel libbpf-devel \
-		   capstone-devel
+		   java-1.8.0-openjdk-devel cmake xmlto asciidoc libtraceevent-devel libbpf-devel
+# Don't include capstone, it uses enum for the arches and new code uses things we don't have in this distro
 RUN dnf -y clean all && \
     mkdir -m 777 -p /git /tmp/build/perf /tmp/build/objtool /tmp/build/linux && \
     groupadd -r toolsbuilder && \

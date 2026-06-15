@@ -9,7 +9,8 @@ RUN apk add --no-cache \
 	elfutils-dev elfutils-libelf openssl-dev slang-dev \
 	gtk+-dev perl-dev python3-dev binutils-dev xz-dev \
 	numactl-dev libunwind-dev zstd-dev libcap-dev cmake asciidoc xmlto \
-	libbpf-dev capstone-dev
+	libbpf-dev
+# Don't include capstone, it uses enum for the arches and new code uses things we don't have in this distro
 RUN mkdir -m 777 -p /git /tmp/build/perf /tmp/build/objtool /tmp/build/linux && \
     adduser -D toolsbuilder && \
     chown -R toolsbuilder.toolsbuilder /tmp/build/ /git/

@@ -9,7 +9,7 @@ RUN emerge libcap
 RUN emerge sys-libs/zlib
 RUN emerge dev-libs/libbpf
 RUN emerge app-arch/zstd
-RUN emerge clang llvm compiler-rt llvm-libunwind lld
+RUN emerge llvm-core/clang llvm compiler-rt llvm-libunwind lld
 RUN emerge elfutils
 RUN emerge numactl
 RUN emerge slang

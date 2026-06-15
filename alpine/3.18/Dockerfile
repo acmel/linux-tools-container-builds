@@ -9,7 +9,7 @@ RUN apk add --no-cache \
 	elfutils-dev elfutils-libelf openssl-dev slang-dev \
 	perl-dev python3-dev binutils-dev xz-dev libtraceevent-dev \
 	numactl-dev libunwind-dev zstd-dev libcap-dev cmake asciidoc xmlto \
-	libbpf-dev capstone-dev
+	libbpf-dev
 RUN mkdir -m 777 -p /git /tmp/build/perf /tmp/build/objtool /tmp/build/linux && \
     adduser -D toolsbuilder && \
     chown -R toolsbuilder.toolsbuilder /tmp/build/ /git/

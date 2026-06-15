@@ -9,7 +9,8 @@ RUN dnf -y install bc file findutils clang llvm openssl git diffutils \
 		   clang-devel llvm-devel redhat-rpm-config libcap-devel \
 		   java-latest-openjdk-devel libzstd-devel opencsd-devel \
 		   libtraceevent-devel libbpf-devel \
-		   cmake asciidoc xmlto capstone-devel
+		   cmake asciidoc xmlto
+# Don't include capstone, it uses enum for the arches and new code uses things we don't have in this distro
 RUN dnf -y update && \
     dnf -y clean all && \
     mkdir -m 777 -p /git /tmp/build/perf /tmp/build/objtool /tmp/build/linux && \
