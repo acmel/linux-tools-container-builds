@@ -11,4 +11,6 @@ fi
 
 shift
 
-podman run $* --network host --tmpfs /tmp:size=8G --entrypoint=/bin/sh --rm -ti tools/linux-tools-build-${image}
+VMLINUX=$(pahole --running_kernel_vmlinux)
+SECCOMP_CONFIG=$(type -p dm | sed -e 's/bin\/dm/config\/containers\/perf-seccomp.json/g')
+podman run --cap-add=CAP_PERFMON -v $VMLINUX:/tmp/vmlinux:ro --security-opt seccomp=$SECCOMP_CONFIG $* --network host --tmpfs /tmp:size=8G --entrypoint=/bin/sh --rm -ti tools/linux-tools-build-${image}
