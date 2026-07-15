@@ -37,7 +37,12 @@ test -d ${output} && mv ${output} ${output}.old
 mkdir -p ${output}
 output_stat=$(mktemp ${output}/stat.XXXXXX)
 
-PODMAN_RUN="podman run --network host --tmpfs /tmp:size=8G --rm -ti"
+SECCOMP_CONFIG=$(type -p dm | sed -e 's/bin\/dm/config\/containers\/perf-seccomp.json/g')
+PODMAN_RUN="podman run --cap-add=CAP_PERFMON --security-opt seccomp=$SECCOMP_CONFIG --network host --tmpfs /tmp:size=8G --rm -ti"
+
+if [ -n "$VMLINUX" ] ; then
+	PODMAN_RUN="$PODMAN_RUN -v $VMLINUX:/tmp/vmlinux:ro"
+fi
 
 printf "Subject: tools build test for $BUILD_TARBALL $BUILD_CMD\n\n" > ${output}/summary
 
@@ -62,6 +67,9 @@ for img in ${images} ; do
 	fi
 	distro=${img:34} ; printf "%4d: %s" ${idx} "${distro}" ; echo ${distro} > ${output}/${distro}
 	workload="${PODMAN_RUN} ${img} $BUILD_TARBALL $BUILD_CMD"
+	if [ -n "$VMLINUX" ] ; then
+		workload="$workload /tmp/vmlinux"
+	fi
 	if [ $verbose -eq 1 ] ; then
 		perf stat -e dummy ${workload} 2> ${output_stat} | tee -a ${output}/${distro}
 		[ ${PIPESTATUS[0]} -eq 0 ] && result="Ok" || result="FAIL"
