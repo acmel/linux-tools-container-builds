@@ -7,10 +7,11 @@ RUN dnf -y config-manager --set-enabled crb
 RUN dnf -y install clang-devel llvm-devel cmake \
 		   elfutils-libelf-devel elfutils-devel \
 		   audit-libs-devel openssl-devel slang-devel \
-		   gtk2-devel perl-ExtUtils-Embed binutils-devel \
+		   gtk2-devel perl-ExtUtils-Embed \
+		   elfutils-debuginfod-client binutils-devel \
 		   systemtap-sdt-devel xz-devel numactl-devel libcap-devel asciidoc xmlto \
 		   libtraceevent-devel libbpf-devel \
-		   vim git
+		   vim git bpftool
 # Don't include capstone, it uses enum for the arches and new code uses things we don't have in this distro
 RUN dnf -y install python3-devel
 RUN dnf -y install diffutils

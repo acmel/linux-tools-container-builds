@@ -4,7 +4,7 @@ MAINTAINER Arnaldo Carvalho de Melo <acme@kernel.org>
 RUN yes | slackpkg install --batch \
 	make guile gc gcc kernel-headers pkg-config \
 	flex bison elfutils python3 m4 slang zstd llvm \
-	zlib libxml2 libedit python-setuptools llvm \
+	zlib libxml2 libedit python-setuptools \
 	libunwind debuginfod
 RUN mkdir -m 777 -p /git /tmp/build/perf /tmp/build/objtool /tmp/build/linux && \
     groupadd -r toolsbuilder && \

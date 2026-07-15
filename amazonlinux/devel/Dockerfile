@@ -2,7 +2,7 @@
 FROM docker.io/library/amazonlinux:devel
 MAINTAINER Arnaldo Carvalho de Melo <acme@kernel.org>
 RUN yum -y install make gcc g++ flex bison \
-		   clang-devel llvm-devel \
+		   clang-devel llvm llvm-devel \
 		   bc git openssl \
 		   xz tar diffutils \
 		   elfutils-libelf-devel elfutils-devel \

@@ -6,10 +6,11 @@ RUN dnf -y config-manager --set-enabled powertools
 RUN dnf -y install clang-devel llvm-devel cmake \
 		   elfutils-libelf-devel elfutils-devel \
 		   audit-libs-devel openssl-devel slang-devel \
-		   gtk2-devel perl-ExtUtils-Embed binutils-devel \
+		   gtk2-devel perl-ExtUtils-Embed \
+		   binutils-devel elfutils-debuginfod-client \
 		   systemtap-sdt-devel xz-devel numactl-devel libcap-devel asciidoc xmlto \
 		   libtraceevent-devel python3-devel diffutils java-1.8.0-openjdk-devel \
-		   libbpf-devel
+		   libbpf-devel bpftool
 RUN dnf -y update
 RUN dnf -y clean all && \
     mkdir -m 777 -p /git /tmp/build/perf /tmp/build/objtool /tmp/build/linux && \

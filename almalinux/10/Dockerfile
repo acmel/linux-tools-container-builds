@@ -10,7 +10,7 @@ RUN dnf -y install clang-devel llvm-devel cmake \
 		   perl-ExtUtils-Embed binutils-devel \
 		   systemtap-sdt-devel xz-devel numactl-devel libcap-devel asciidoc xmlto \
 		   libtraceevent-devel libbpf-devel capstone-devel \
-		   vim git python3-devel diffutils
+		   vim git python3-devel diffutils bpftool
 RUN dnf -y clean all && \
     mkdir -m 777 -p /git /tmp/build/perf /tmp/build/objtool /tmp/build/linux && \
     groupadd -r toolsbuilder && \
