@@ -10,7 +10,7 @@ RUN dnf -y install make gcc gcc-c++ flex bison xz \
 	numactl-devel clang-devel llvm-devel libcap-devel opencsd-devel \
 	redhat-rpm-config java-latest-openjdk-devel perl-ExtUtils-Embed \
 	libtraceevent-devel libbpf-devel capstone-devel \
-	cmake xmlto asciidoc && \
+	cmake xmlto asciidoc bpftool dwz && \
     dnf -y clean all && \
     mkdir -m 777 -p /git /tmp/build/perf /tmp/build/objtool /tmp/build/linux && \
     groupadd -r toolsbuilder && \

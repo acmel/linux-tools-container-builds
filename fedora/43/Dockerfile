@@ -8,7 +8,7 @@ RUN dnf -y install bc file findutils clang llvm openssl git diffutils \
 		   python3-devel python3-setuptools binutils-devel xz-devel numactl-devel systemtap-sdt-devel \
 		   clang-devel llvm-devel redhat-rpm-config libcap-devel \
 		   java-latest-openjdk-devel libzstd-devel opencsd-devel \
-		   libtraceevent-devel libbpf-devel \
+		   libtraceevent-devel libbpf-devel bpftool dwz \
 		   cmake asciidoc xmlto capstone-devel
 RUN dnf -y update && \
     dnf -y clean all && \
