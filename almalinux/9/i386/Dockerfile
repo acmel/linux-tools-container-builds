@@ -6,12 +6,19 @@ RUN dnf -y install make gcc gcc-c++ flex bison bc git openssl clang llvm yum-uti
 RUN dnf -y config-manager --set-enabled crb
 # Don't include capstone, it uses enum for the arches and new code uses things we don't have in this distro
 RUN dnf -y install clang-devel llvm-devel cmake pkg-config \
+		   dwz elfutils-debuginfod-client \
 		   elfutils-libelf-devel elfutils-devel \
 		   audit-libs-devel openssl-devel slang-devel \
 		   gtk2-devel perl-ExtUtils-Embed binutils-devel \
-		   systemtap-sdt-devel xz-devel numactl-devel libcap-devel asciidoc xmlto \
-		   libtraceevent-devel libbpf-devel \
+		   systemtap-sdt-devel xz-devel numactl-devel libcap-devel \
+		   asciidoc xmlto libtraceevent-devel libbpf-devel \
 		   vim git diffutils python3-devel python3-setuptools
+RUN git clone --recurse-submodules https://github.com/libbpf/bpftool.git \
+	/tmp/bpftool && \
+	cd /tmp/bpftool/src && \
+	make && \
+	make install && \
+    rm -rf /tmp/bpftool
 RUN dnf -y clean all && \
     mkdir -m 777 -p /git /tmp/build/perf /tmp/build/objtool /tmp/build/linux && \
     groupadd -r toolsbuilder && \
