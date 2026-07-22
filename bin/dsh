@@ -12,5 +12,11 @@ fi
 shift
 
 VMLINUX=$(pahole --running_kernel_vmlinux)
+PERF_SRC_DIR=${PERF_SRC_DIR:-~/git/linux}
 SECCOMP_CONFIG=$(type -p dm | sed -e 's/bin\/dm/config\/containers\/perf-seccomp.json/g')
-podman run --cap-add=CAP_PERFMON -v $VMLINUX:/tmp/vmlinux:ro --security-opt seccomp=$SECCOMP_CONFIG $* --network host --tmpfs /tmp:size=8G --entrypoint=/bin/sh --rm -ti tools/linux-tools-build-${image}
+podman run \
+  -v "$VMLINUX":/tmp/vmlinux:ro \
+  -v "$PERF_SRC_DIR":/tmp/perf_src_dir:ro,z \
+  --security-opt seccomp="$SECCOMP_CONFIG" \
+  $* --network host --tmpfs /tmp:size=8G \
+  --entrypoint=/bin/sh --rm -ti tools/linux-tools-build-${image}

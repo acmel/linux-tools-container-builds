@@ -3,8 +3,8 @@ FROM docker.io/library/amazonlinux:2023
 MAINTAINER Arnaldo Carvalho de Melo <acme@kernel.org>
 RUN yum -y install make gcc g++ flex bison \
 		   clang-devel llvm llvm-devel \
-		   bc git openssl \
-		   xz tar diffutils \
+		   bc git openssl dwz bpftool \
+		   xz tar diffutils elfutils-debuginfod-client \
 		   elfutils-libelf-devel elfutils-devel \
 		   libunwind-devel audit-libs-devel openssl-devel slang-devel \
 		   perl-ExtUtils-Embed python-devel python-setuptools binutils-devel \

@@ -24,7 +24,7 @@ RUN apt-get -y update && \
 	libzstd-dev \
 	libunwind-dev \
 	python-dev-is-python3 \
-	systemtap-sdt-dev \
+	systemtap-sdt-dev bpftool dwz gawk \
         libbabeltrace-ctf-dev cmake xmlto asciidoc && \
     apt-get -y clean && \
     mkdir -m 777 -p /git /tmp/build/perf /tmp/build/objtool /tmp/build/linux && \

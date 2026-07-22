@@ -6,6 +6,7 @@ RUN dnf install yum-utils
 RUN dnf config-manager --set-enabled ol9_codeready_builder
 RUN dnf -y install make gcc gcc-c++ flex bison \
 		   clang clang-devel llvm llvm-devel \
+		   dwz elfutils-debuginfod-client bpftool \
 		   bc tar xz elfutils-libelf-devel elfutils-devel \
 		   audit-libs-devel openssl-devel slang-devel libzstd-devel  \
 		   gtk2-devel perl-ExtUtils-Embed python3-devel python3-setuptools binutils-devel \

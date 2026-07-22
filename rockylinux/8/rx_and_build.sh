@@ -40,8 +40,8 @@ if [ -z "$TARBALL_URL" ] ; then
 	exit 1
 fi
 
-shift
-BUILD_CMD="$*"
+BUILD_CMD="$2"
+export VMLINUX="$3"
 
 cd /git
 echo "Downloading $TARBALL_URL..."
@@ -50,8 +50,7 @@ TARBALL=`basename $TARBALL_URL`
 xzcat $TARBALL | tar xvf -
 SRCDIR=`echo $TARBALL | sed -r 's/(.*).tar\..*/\1/g'` 
 cd /git/$SRCDIR
-echo -n BUILD_TARBALL_HEAD=
-cat HEAD
+test -f HEAD && (echo -n BUILD_TARBALL_HEAD= ; cat HEAD)
 
 # print the version for dm to harvest and put in the status line
 ${CROSS_COMPILE}gcc -v

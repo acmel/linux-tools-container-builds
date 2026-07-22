@@ -40,8 +40,8 @@ if [ -z "$TARBALL_URL" ] ; then
 	exit 1
 fi
 
-shift
-BUILD_CMD="$*"
+BUILD_CMD="$2"
+export VMLINUX="$3"
 
 cd /git
 echo "Downloading $TARBALL_URL..."

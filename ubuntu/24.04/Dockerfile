@@ -6,6 +6,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get -y update && \
     apt-get -y install \
 	make gcc g++ git flex bison curl file man \
+	dwz debuginfod gawk \
 	bc findutils clang llvm curl \
 	libclang-dev llvm-dev libcap-dev \
 	libunwind8-dev libssl-dev libslang2-dev python3-dev python3-setuptools \
@@ -17,6 +18,11 @@ RUN apt-get -y update && \
     groupadd -r toolsbuilder && \
     useradd -m -r -g toolsbuilder toolsbuilder && \
     chown -R toolsbuilder.toolsbuilder /tmp/build/ /git/
+RUN git clone --recurse-submodules https://github.com/libbpf/bpftool.git /tmp/bpftool && \
+    cd /tmp/bpftool/src && \
+    make && \
+    make install && \
+    rm -rf /tmp/bpftool
 USER toolsbuilder
 COPY rx_and_build.sh /
 COPY .bash_profile /home/toolsbuilder/

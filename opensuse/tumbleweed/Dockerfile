@@ -7,6 +7,7 @@ RUN zypper -n update && \
 	make gcc gcc-c++ flex bison cpio git openssh-clients vim-enhanced \
 	bc file findutils clang llvm curl tar xz \
 	libunwind-devel openssl-devel slang-devel python3-devel python3-setuptools \
+	dwz debuginfod-client bpftool \
 	systemtap-sdt-devel gtk2-devel xz-devel binutils-devel \
 	libelf-devel libdw-devel audit-devel libzstd-devel \
 	java-1_8_0-openjdk-headless libcap-devel \

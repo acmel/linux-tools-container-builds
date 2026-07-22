@@ -7,6 +7,7 @@ RUN dnf config-manager --set-enabled ol10_codeready_builder
 RUN dnf -y install make gcc gcc-c++ flex bison \
 		   clang clang-devel llvm llvm-devel \
 		   bc tar xz elfutils-libelf-devel elfutils-devel \
+		   dwz elfutils-debuginfod-client bpftool \
 		   audit-libs-devel openssl-devel slang-devel libzstd-devel  \
 		   perl-ExtUtils-Embed python3-devel python3-setuptools binutils-devel \
 		   systemtap-sdt-devel xz-devel numactl-devel libcap-devel \

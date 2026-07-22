@@ -6,6 +6,7 @@ RUN dnf -y install make gcc gcc-c++ flex bison bc git openssl clang llvm yum-uti
 RUN dnf -y config-manager --set-enabled devel
 RUN dnf -y install clang-devel llvm-devel cmake \
 		   elfutils-libelf-devel elfutils-devel \
+		   dwz elfutils-debuginfod-client bpftool \
 		   audit-libs-devel openssl-devel slang-devel \
 		   gtk2-devel perl-ExtUtils-Embed binutils-devel \
 		   systemtap-sdt-devel xz-devel numactl-devel libcap-devel asciidoc xmlto \

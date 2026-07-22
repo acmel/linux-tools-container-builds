@@ -5,6 +5,7 @@ RUN dnf -y update
 RUN dnf -y install make gcc gcc-c++ flex bison bc git openssl clang llvm yum-utils
 RUN dnf -y config-manager --set-enabled crb
 RUN dnf -y install clang-devel llvm-devel cmake xz \
+		   dwz elfutils-debuginfod-client bpftool \
 		   elfutils-libelf-devel elfutils-devel \
 		   audit-libs-devel openssl-devel slang-devel \
 		   perl-ExtUtils-Embed binutils-devel \

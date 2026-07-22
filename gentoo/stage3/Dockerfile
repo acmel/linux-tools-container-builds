@@ -1,29 +1,35 @@
 # tools/linux-tools-build-gentoo:stage3
 FROM docker.io/gentoo/stage3
 MAINTAINER Arnaldo Carvalho de Melo <acme@kernel.org>
-RUN emerge --sync
-#RUN emerge --oneshot portage
-RUN emerge --oneshot sys-apps/portage
-RUN emerge capstone
-RUN emerge libcap
-RUN emerge sys-libs/zlib
-RUN emerge dev-libs/libbpf
-RUN emerge app-arch/zstd
-RUN emerge llvm-core/clang llvm compiler-rt llvm-libunwind lld
-RUN emerge elfutils
-RUN emerge numactl
-RUN emerge slang
-RUN emerge babeltrace
-RUN emerge dev-libs/libtraceevent
-RUN emerge xmlto
-RUN emerge asciidoc
-RUN emerge systemtap
-RUN emerge dev-vcs/git
-RUN emerge vim
+RUN emerge --sync && \
+    emerge --oneshot sys-apps/portage && \
+    emerge \
+      dev-libs/capstone \
+      sys-libs/libcap \
+      sys-libs/zlib \
+      dev-libs/libbpf \
+      app-arch/zstd \
+      llvm-core/clang \
+      llvm-core/llvm \
+      llvm-runtimes/compiler-rt \
+      llvm-runtimes/libunwind \
+      llvm-core/lld \
+      dev-libs/elfutils \
+      sys-process/numactl \
+      sys-libs/slang \
+      dev-util/babeltrace \
+      dev-libs/libtraceevent \
+      app-text/xmlto \
+      app-text/asciidoc \
+      dev-debug/systemtap \
+      dev-util/bpftool \
+      sys-devel/dwz \
+      dev-vcs/git \
+      app-editors/vim
 RUN mkdir -m 777 -p /git /tmp/build/perf /tmp/build/objtool /tmp/build/linux && \
     groupadd -r toolsbuilder && \
     useradd -m -r -g toolsbuilder toolsbuilder && \
-    chown -R toolsbuilder.toolsbuilder /tmp/build/ /git/
+    chown -R toolsbuilder:toolsbuilder /tmp/build/ /git/
 USER toolsbuilder
 COPY rx_and_build.sh /
 COPY .bash_profile /home/toolsbuilder/

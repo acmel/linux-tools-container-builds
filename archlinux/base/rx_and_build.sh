@@ -40,8 +40,8 @@ if [ -z "$TARBALL_URL" ] ; then
 	exit 1
 fi
 
-shift
-BUILD_CMD="$*"
+BUILD_CMD="$2"
+export VMLINUX="$3"
 
 cd /git
 echo "Downloading $TARBALL_URL..."
@@ -70,10 +70,6 @@ set +o xtrace
 
 # Bail ou if we don't have clang, print the version for dm to harvest and put in the status line
 ${CROSS_COMPILE}clang -v || exit 0
-
-# Avoid things like archlinux clashing with _FORTIFY_SOURCE=2
-unset CPPFLAGS
-unset CFLAGS
 
 if [ -z "$BUILD_CMD" ] ; then
 	build_perf_clang

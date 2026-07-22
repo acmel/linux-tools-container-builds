@@ -44,6 +44,10 @@ if [ -n "$VMLINUX" ] ; then
 	PODMAN_RUN="$PODMAN_RUN -v $VMLINUX:/tmp/vmlinux:ro"
 fi
 
+if [ -n "$PERF_SRC_DIR" ] ; then
+	PODMAN_RUN="$PODMAN_RUN -v $PERF_SRC_DIR:/tmp/perf_src_dir:ro,z"
+fi
+
 printf "Subject: tools build test for $BUILD_TARBALL $BUILD_CMD\n\n" > ${output}/summary
 
 let idx=1

@@ -4,9 +4,15 @@ MAINTAINER Arnaldo Carvalho de Melo <acme@kernel.org>
 RUN pacman-key --init
 RUN pacman -Sy archlinux-keyring --noconfirm
 RUN pacman -Syu --noconfirm sed grep diffutils awk
-RUN pacman -Syu --noconfirm jdk8-openjdk clang llvm zstd gtk2 libcap python
+#RUN yay -S dwz bpftool
+RUN pacman -Syu --noconfirm jdk8-openjdk clang llvm zstd bpf libcap python
 RUN pacman -Syu --noconfirm make gcc flex bison libelf openssl slang libunwind audit numactl gettext cmake xmlto asciidoc
-RUN pacman -Syu --noconfirm vim git ctags python-setuptools libtraceevent openssh wget pkg-config libbpf capstone
+RUN pacman -Syu --noconfirm vim git ctags python-setuptools libtraceevent openssh wget pkg-config libbpf capstone xxhash
+RUN git clone https://sourceware.org/git/dwz.git /tmp/dwz && \
+    cd /tmp/dwz && \
+    make && \
+    make install && \
+    rm -rf /tmp/dwz
 RUN mkdir -m 777 -p /git /tmp/build/perf /tmp/build/objtool /tmp/build/linux && \
     useradd -m toolsbuilder
 USER toolsbuilder
